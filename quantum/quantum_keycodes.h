@@ -39,7 +39,7 @@
 
 // Generic decoding for the whole QK_MODS range
 #define QK_MODS_GET_MODS(kc) (((kc) >> 8) & 0x1F)
-#define QK_MODS_GET_BASIC_KEYCODE(kc) ((kc)&0xFF)
+#define QK_MODS_GET_BASIC_KEYCODE(kc) ((kc) & 0xFF)
 
 // Keycode modifiers & aliases
 #define LCTL(kc) (QK_LCTL | (kc))
@@ -81,47 +81,47 @@
 #define G(kc) LGUI(kc)
 
 // GOTO layer - 32 layer max
-#define TO(layer) (QK_TO | ((layer)&0x1F))
-#define QK_TO_GET_LAYER(kc) ((kc)&0x1F)
+#define TO(layer) (QK_TO | ((layer) & 0x1F))
+#define QK_TO_GET_LAYER(kc) ((kc) & 0x1F)
 
 // Momentary switch layer - 32 layer max
-#define MO(layer) (QK_MOMENTARY | ((layer)&0x1F))
-#define QK_MOMENTARY_GET_LAYER(kc) ((kc)&0x1F)
+#define MO(layer) (QK_MOMENTARY | ((layer) & 0x1F))
+#define QK_MOMENTARY_GET_LAYER(kc) ((kc) & 0x1F)
 
 // Set default layer - 32 layer max
-#define DF(layer) (QK_DEF_LAYER | ((layer)&0x1F))
-#define QK_DEF_LAYER_GET_LAYER(kc) ((kc)&0x1F)
+#define DF(layer) (QK_DEF_LAYER | ((layer) & 0x1F))
+#define QK_DEF_LAYER_GET_LAYER(kc) ((kc) & 0x1F)
 
 // Toggle to layer - 32 layer max
-#define TG(layer) (QK_TOGGLE_LAYER | ((layer)&0x1F))
-#define QK_TOGGLE_LAYER_GET_LAYER(kc) ((kc)&0x1F)
+#define TG(layer) (QK_TOGGLE_LAYER | ((layer) & 0x1F))
+#define QK_TOGGLE_LAYER_GET_LAYER(kc) ((kc) & 0x1F)
 
 // One-shot layer - 32 layer max
-#define OSL(layer) (QK_ONE_SHOT_LAYER | ((layer)&0x1F))
-#define QK_ONE_SHOT_LAYER_GET_LAYER(kc) ((kc)&0x1F)
+#define OSL(layer) (QK_ONE_SHOT_LAYER | ((layer) & 0x1F))
+#define QK_ONE_SHOT_LAYER_GET_LAYER(kc) ((kc) & 0x1F)
 
 // L-ayer M-od: Momentary switch layer with modifiers active - 16 layer max
-#define LM(layer, mod) (QK_LAYER_MOD | (((layer)&0xF) << 5) | ((mod)&0x1F))
+#define LM(layer, mod) (QK_LAYER_MOD | (((layer) & 0xF) << 5) | ((mod) & 0x1F))
 #define QK_LAYER_MOD_GET_LAYER(kc) (((kc) >> 5) & 0xF)
-#define QK_LAYER_MOD_GET_MODS(kc) ((kc)&0x1F)
+#define QK_LAYER_MOD_GET_MODS(kc) ((kc) & 0x1F)
 
 // One-shot mod
-#define OSM(mod) (QK_ONE_SHOT_MOD | ((mod)&0x1F))
-#define QK_ONE_SHOT_MOD_GET_MODS(kc) ((kc)&0x1F)
+#define OSM(mod) (QK_ONE_SHOT_MOD | ((mod) & 0x1F))
+#define QK_ONE_SHOT_MOD_GET_MODS(kc) ((kc) & 0x1F)
 
 // Layer tap-toggle - 32 layer max
-#define TT(layer) (QK_LAYER_TAP_TOGGLE | ((layer)&0x1F))
-#define QK_LAYER_TAP_TOGGLE_GET_LAYER(kc) ((kc)&0x1F)
+#define TT(layer) (QK_LAYER_TAP_TOGGLE | ((layer) & 0x1F))
+#define QK_LAYER_TAP_TOGGLE_GET_LAYER(kc) ((kc) & 0x1F)
 
 // L-ayer, T-ap - 256 keycode max, 16 layer max
-#define LT(layer, kc) (QK_LAYER_TAP | (((layer)&0xF) << 8) | ((kc)&0xFF))
+#define LT(layer, kc) (QK_LAYER_TAP | (((layer) & 0xF) << 8) | ((kc) & 0xFF))
 #define QK_LAYER_TAP_GET_LAYER(kc) (((kc) >> 8) & 0xF)
-#define QK_LAYER_TAP_GET_TAP_KEYCODE(kc) ((kc)&0xFF)
+#define QK_LAYER_TAP_GET_TAP_KEYCODE(kc) ((kc) & 0xFF)
 
 // M-od, T-ap - 256 keycode max
-#define MT(mod, kc) (QK_MOD_TAP | (((mod)&0x1F) << 8) | ((kc)&0xFF))
+#define MT(mod, kc) (QK_MOD_TAP | (((mod) & 0x1F) << 8) | ((kc) & 0xFF))
 #define QK_MOD_TAP_GET_MODS(kc) (((kc) >> 8) & 0x1F)
-#define QK_MOD_TAP_GET_TAP_KEYCODE(kc) ((kc)&0xFF)
+#define QK_MOD_TAP_GET_TAP_KEYCODE(kc) ((kc) & 0xFF)
 
 #define LCTL_T(kc) MT(MOD_LCTL, kc)
 #define RCTL_T(kc) MT(MOD_RCTL, kc)
@@ -172,23 +172,24 @@
 // Dedicated keycode versions for Hyper and Meh, if you want to use them as standalone keys rather than mod-tap
 #define KC_HYPR HYPR(KC_NO)
 #define KC_MEH MEH(KC_NO)
+#define KC_LCAG LCAG(KC_NO)
 
 // Unicode aliases
 // UNICODE_ENABLE - Allows Unicode input up to 0x7FFF
 #define UC(c) (QK_UNICODE | (c))
-#define QK_UNICODE_GET_CODE_POINT(kc) ((kc)&0x7FFF)
+#define QK_UNICODE_GET_CODE_POINT(kc) ((kc) & 0x7FFF)
 
 // UNICODEMAP_ENABLE - Allows Unicode input up to 0x10FFFF, requires unicode_map
-#define X(i) (QK_UNICODEMAP | ((i)&0x3FFF))
-#define QK_UNICODEMAP_GET_INDEX(kc) ((kc)&0x3FFF)
+#define X(i) (QK_UNICODEMAP | ((i) & 0x3FFF))
+#define QK_UNICODEMAP_GET_INDEX(kc) ((kc) & 0x3FFF)
 
-#define XP(i, j) (QK_UNICODEMAP_PAIR | ((i)&0x7F) | (((j)&0x7F) << 7)) // 127 max i and j
-#define QK_UNICODEMAP_PAIR_GET_UNSHIFTED_INDEX(kc) ((kc)&0x7F)
+#define XP(i, j) (QK_UNICODEMAP_PAIR | ((i) & 0x7F) | (((j) & 0x7F) << 7)) // 127 max i and j
+#define QK_UNICODEMAP_PAIR_GET_UNSHIFTED_INDEX(kc) ((kc) & 0x7F)
 #define QK_UNICODEMAP_PAIR_GET_SHIFTED_INDEX(kc) (((kc) >> 7) & 0x7F)
 
 // Swap Hands
-#define SH_T(kc) (QK_SWAP_HANDS | ((kc)&0xFF))
-#define QK_SWAP_HANDS_GET_TAP_KEYCODE(kc) ((kc)&0xFF)
+#define SH_T(kc) (QK_SWAP_HANDS | ((kc) & 0xFF))
+#define QK_SWAP_HANDS_GET_TAP_KEYCODE(kc) ((kc) & 0xFF)
 
 // MIDI aliases
 #define MIDI_TONE_MIN QK_MIDI_NOTE_C_0
